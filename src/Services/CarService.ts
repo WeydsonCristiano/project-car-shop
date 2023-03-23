@@ -1,26 +1,36 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import IGenericService from '../Interfaces/IGenericService';
+import CarODM from '../Models/CarODM';
 
 class CarService implements IGenericService<ICar, Car> {
+  protected odm: CarODM = new CarODM();
+
   async create(dto: ICar): Promise<Car> {
-    throw new Error('Method not implemented.');
+    const car = await this.odm.create(dto);
+    return new Car(car);
   }
 
   async getall(): Promise<Car[]> {
-    throw new Error('Method not implemented.');
+    const carAll = await this.odm.getAll();
+    return carAll.map((car) => new Car(car));
   }
 
   async getid(id: string): Promise<Car> {
-    throw new Error('Method not implemented.');
+    const carId = await this.odm.getById(id);
+    if (!carId) throw Error('Car not found');
+    return new Car(carId);
   }
 
   async update(id: string, dto: ICar): Promise<Car> {
-    throw new Error('Method not implemented.');
+    const carUpdate = await this.odm.update(id, dto);
+    if (!carUpdate) throw Error('Car not found');
+    return new Car(carUpdate);
   }
 
   async delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+    await this.getid(id);
+    await this.odm.delete(id);
   }
 }
 
