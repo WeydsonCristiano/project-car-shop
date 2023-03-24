@@ -72,10 +72,4 @@ describe('Testes de serviço: Create Car', function () {
     const result = await service.update('634852326b35b59438fbea2f', carMock);
     expect(result).to.be.deep.equal(newCarMock);
   });
-
-  // it('deletar um carros por id', async function () {
-  //   Sinon.stub(Model, 'findByIdAndDelete').resolves(newCarMock);
-  //   const result = await service.delete('634852326b35b59438fbea2f');
-  //   expect(result).to.be.deep.equal(newCarMock);
-  // });
 });
