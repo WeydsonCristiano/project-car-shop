@@ -9,7 +9,7 @@ import {
 
 import GenericError from '../Errors/GenericError';
 
-const err = 'Invalid Mongo id';
+const err = 'Invalid mongo id';
 
 abstract class AbstractODM<T> {
   protected model: Model<T>;

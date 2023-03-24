@@ -17,7 +17,7 @@ class MotorcycleController {
   public async create() {
     try {
       const newMotor = await this.service.create(this.req.body);
-      return this.res.status(200).json(newMotor);
+      return this.res.status(201).json(newMotor);
     } catch (error) {
       this.next(error);
     }
@@ -56,6 +56,7 @@ class MotorcycleController {
     try {
       const { id } = this.req.params;
       await this.service.delete(id);
+      return this.res.status(204);
     } catch (error) {
       this.next(error);
     }

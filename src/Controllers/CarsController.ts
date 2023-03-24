@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-// import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
 
 class CarController {
@@ -18,7 +17,7 @@ class CarController {
   public async create() {
     try {
       const newCar = await this.service.create(this.req.body);
-      return this.res.status(200).json(newCar);
+      return this.res.status(201).json(newCar);
     } catch (error) {
       this.next(error);
     }
@@ -57,6 +56,7 @@ class CarController {
     try {
       const { id } = this.req.params;
       await this.service.delete(id);
+      return this.res.status(204);
     } catch (error) {
       this.next(error);
     }
