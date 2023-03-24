@@ -18,7 +18,7 @@ motorcycleRouter.get(
 );
 motorcycleRouter.put(
   rota,
-  (req, res, next) => new MotorcycleController(req, res, next).create(),
+  (req, res, next) => new MotorcycleController(req, res, next).update(),
 );
 motorcycleRouter.delete(
   rota,

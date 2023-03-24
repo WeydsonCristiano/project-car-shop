@@ -17,7 +17,7 @@ carRouter.get(
 );
 carRouter.put(
   '/cars/:id',
-  (req, res, next) => new CarsController(req, res, next).create(),
+  (req, res, next) => new CarsController(req, res, next).update(),
 );
 carRouter.delete(
   '/cars/:id',

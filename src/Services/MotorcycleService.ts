@@ -2,6 +2,9 @@ import Motorcycle from '../Domains/Motorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import IGenericService from '../Interfaces/IGenericService';
 import MotorcycleODM from '../Models/MotorcycleODM';
+import GenericError from '../Errors/GenericError';
+
+const err = 'Motocycle not fount';
 
 class MotorcycleService implements IGenericService<IMotorcycle, Motorcycle> {
   protected odm: MotorcycleODM = new MotorcycleODM();
@@ -18,13 +21,13 @@ class MotorcycleService implements IGenericService<IMotorcycle, Motorcycle> {
 
   async getid(id: string): Promise<Motorcycle> {
     const motorId = await this.odm.getById(id);
-    if (!motorId) throw Error('Motorcycle not found');
+    if (!motorId) throw new GenericError(err, 404);
     return new Motorcycle(motorId);
   }
 
   async update(id: string, dto: IMotorcycle): Promise<Motorcycle> {
     const motorUpdate = await this.odm.update(id, dto);
-    if (!motorUpdate) throw Error('Motorcycle not found');
+    if (!motorUpdate) throw new GenericError(err, 404);
     return new Motorcycle(motorUpdate);
   }
 
