@@ -7,6 +7,8 @@ import {
   model,
 } from 'mongoose';
 
+import GenericError from '../Errors/GenericError';
+
 const err = 'Invalid Mongo id';
 
 abstract class AbstractODM<T> {
@@ -29,12 +31,12 @@ abstract class AbstractODM<T> {
   }
 
   public async getById(_id: string): Promise<T | null> {
-    if (!isValidObjectId(_id)) throw Error(err);
+    if (!isValidObjectId(_id)) throw new GenericError(err, 422);
     return this.model.findById(_id);
   }
 
   public async update(_id: string, obj: Partial<T>): Promise<T | null> {
-    if (!isValidObjectId(_id)) throw Error(err);
+    if (!isValidObjectId(_id)) throw new GenericError(err, 422);
 
     return this.model.findByIdAndUpdate({ _id }, { ...obj } as UpdateQuery<T>, {
       new: true,
@@ -42,7 +44,7 @@ abstract class AbstractODM<T> {
   }
 
   public async delete(_id: string): Promise<void> {
-    if (!isValidObjectId(_id)) throw Error(err);
+    if (!isValidObjectId(_id)) throw new GenericError(err, 422);
     await this.model.findByIdAndDelete({ _id });
   }
 }

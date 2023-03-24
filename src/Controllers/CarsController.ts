@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import ICar from '../Interfaces/ICar';
+// import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
 
 class CarController {
@@ -16,40 +16,50 @@ class CarController {
   }
 
   public async create() {
-    const car: ICar = {
-      id: this.req.body.id,
-      model: this.req.body.model,
-      year: this.req.body.year,
-      color: this.req.body.color,
-      status: this.req.body.status,
-      buyValue: this.req.body.status,
-      doorsQty: this.req.body.doorsQty,
-      seatsQty: this.req.body.seatsQty,
-    };
-    const newCar = await this.service.create(car);
-    return this.res.status(200).json(newCar);
+    try {
+      const newCar = await this.service.create(this.req.body);
+      return this.res.status(200).json(newCar);
+    } catch (error) {
+      this.next(error);
+    }
   }
 
   public async getall() {
-    const car = await this.service.getall();
-    return this.res.status(200).json(car);
+    try {
+      const car = await this.service.getall();
+      return this.res.status(200).json(car);
+    } catch (error) {
+      this.next(error);
+    }
   }
 
   public async getid() {
-    const { id } = this.req.params;
-    const car = await this.service.getid(id);
-    return this.res.status(200).json(car);
+    try {
+      const { id } = this.req.params;
+      const car = await this.service.getid(id);
+      return this.res.status(200).json(car);
+    } catch (error) {
+      this.next(error);
+    }
   }
 
   public async update() {
-    const { id } = this.req.params;
-    const car = await this.service.update(id, this.req.body);
-    return this.res.status(200).json(car);
+    try {
+      const { id } = this.req.params;
+      const car = await this.service.update(id, this.req.body);
+      return this.res.status(200).json(car);
+    } catch (error) {
+      this.next(error);
+    }
   }
 
   public async delete() {
-    const { id } = this.req.params;
-    await this.service.delete(id);
+    try {
+      const { id } = this.req.params;
+      await this.service.delete(id);
+    } catch (error) {
+      this.next(error);
+    }
   }
 }
 

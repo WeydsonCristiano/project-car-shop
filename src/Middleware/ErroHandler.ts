@@ -10,7 +10,7 @@ class ErrorHandler {
     if (error instanceof Error && error.stack) {
       return res.status(parseInt(error.stack, 10)).send({ message: error.message });
     }
-    return res.status(500).send({ message: 'vehicle not found' });
+    return res.status(500).send({ message: 'server not found' });
   }
 }
 

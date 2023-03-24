@@ -2,26 +2,27 @@ import express from 'express';
 import MotorcycleController from '../Controllers/MotorcycleController';
 
 const motorcycleRouter = express.Router();
+const rota = '/motorcycles/:id';
 
 motorcycleRouter.post(
-  '/',
-  (req, res, next) => new MotorcycleController(req, res, next).create,
+  '/motorcycles',
+  (req, res, next) => new MotorcycleController(req, res, next).create(),
 );
 motorcycleRouter.get(
-  '/',
-  (req, res, next) => new MotorcycleController(req, res, next).getall,
+  '/motorcycles',
+  (req, res, next) => new MotorcycleController(req, res, next).getall(),
 );
 motorcycleRouter.get(
-  '/:id',
-  (req, res, next) => new MotorcycleController(req, res, next).getid,
+  rota,
+  (req, res, next) => new MotorcycleController(req, res, next).getid(),
 );
 motorcycleRouter.put(
-  '/:id',
-  (req, res, next) => new MotorcycleController(req, res, next).create,
+  rota,
+  (req, res, next) => new MotorcycleController(req, res, next).create(),
 );
 motorcycleRouter.delete(
-  '/:id',
-  (req, res, next) => new MotorcycleController(req, res, next).delete,
+  rota,
+  (req, res, next) => new MotorcycleController(req, res, next).delete(),
 );
 
 export default motorcycleRouter;
