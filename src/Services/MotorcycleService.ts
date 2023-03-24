@@ -4,7 +4,7 @@ import IGenericService from '../Interfaces/IGenericService';
 import MotorcycleODM from '../Models/MotorcycleODM';
 import GenericError from '../Errors/GenericError';
 
-const err = 'Motorcycle not fount';
+const err = 'Motorcycle not found';
 
 class MotorcycleService implements IGenericService<IMotorcycle, Motorcycle> {
   protected odm: MotorcycleODM = new MotorcycleODM();
