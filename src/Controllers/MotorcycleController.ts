@@ -20,6 +20,7 @@ class MotorcycleController {
       id: this.req.body.id,
       model: this.req.body.model,
       year: this.req.body.year,
+      color: this.req.body.color,
       status: this.req.body.status,
       buyValue: this.req.body.status,
       category: this.req.body.category,

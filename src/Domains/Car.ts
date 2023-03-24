@@ -10,6 +10,7 @@ class Car extends Vehicle {
       id: car.id,
       model: car.model,
       year: car.year,
+      color: car.color,
       status: car.status,
       buyValue: car.buyValue,
     });

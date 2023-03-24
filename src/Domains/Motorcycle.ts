@@ -10,6 +10,7 @@ class Motorcycle extends Vehicle {
       id: motorcycle.id,
       model: motorcycle.model,
       year: motorcycle.year,
+      color: motorcycle.color,
       status: motorcycle.status,
       buyValue: motorcycle.buyValue,
     });
