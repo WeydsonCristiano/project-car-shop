@@ -26,12 +26,8 @@ class CarController {
       doorsQty: this.req.body.doorsQty,
       seatsQty: this.req.body.seatsQty,
     };
-    try {
-      const newCar = await this.service.create(car);
-      return this.res.status(200).json(newCar);
-    } catch (error) {
-      this.next(error);
-    }
+    const newCar = await this.service.create(car);
+    return this.res.status(200).json(newCar);
   }
 
   public async getall() {
