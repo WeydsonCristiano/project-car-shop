@@ -44,11 +44,11 @@ class CarController {
     return this.res.status(200).json(car);
   }
 
-  // public async update() {
-  //   const { id } = this.req.params;
-  //   const car = await this.service.update();
-  //   return this.res.status(200).json(car);
-  // }
+  public async update() {
+    const { id } = this.req.params;
+    const car = await this.service.update(id, this.req.body);
+    return this.res.status(200).json(car);
+  }
 
   public async delete() {
     const { id } = this.req.params;
